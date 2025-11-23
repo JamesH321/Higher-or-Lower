@@ -3,7 +3,7 @@ public enum Suit {
     DIAMONDS("♦"),
     CLUBS("♣"),
     SPADES("♠"),
-    NONE("NONE");
+    NONE("★");
 
     private final String symbol;
 
