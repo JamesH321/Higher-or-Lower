@@ -24,7 +24,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>GameEngine</mainClass>
+                            <mainClass>HigherOrLower.GameEngine</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
