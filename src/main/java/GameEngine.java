@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class GameEngine {
     private final Deck deck;
     private Card currentCard;
@@ -17,20 +19,49 @@ public class GameEngine {
         this.currentCard = this.deck.draw();
     }
 
+    public static void main(String[] args) {
+        ConsoleRenderer consoleRenderer = new ConsoleRenderer();
+        Scanner scanner = new Scanner(System.in);
+
+        GameEngine gameEngine = new GameEngine();
+        consoleRenderer.displayWelcome();
+
+        while (!gameEngine.isGameOver()) {
+            consoleRenderer.displayGameState(
+                    gameEngine.getCurrentCard(),
+                    gameEngine.getScore(),
+                    gameEngine.getStreak(),
+                    gameEngine.getLives(),
+                    gameEngine.cardsRemaining()
+            );
+
+            boolean validInput = false;
+            String input = "";
+            while (!validInput) {
+                input = scanner.nextLine().trim().toUpperCase();
+
+                if (input.equals("H") || input.equals("L")) {
+                    validInput = true;
+                } else {
+                    System.out.print("Invalid input. Please try again > ");
+                }
+            }
+
+            boolean correctGuess = gameEngine.makeGuess(input);
+
+            if (correctGuess) {
+                System.out.print("\nCorrect!\n");
+            } else {
+                System.out.print("\nIncorrect!\n");
+
+            }
+        }
+
+        consoleRenderer.displayGameOver(gameEngine.getScore());
+    }
+
     public boolean makeGuess(String guess) {
         Card nextCard = deck.draw();
-
-        if (nextCard == null) {
-            System.out.println("Game over! The deck is empty!");
-            this.gameOver = true;
-            return false;
-        }
-
-        if (lives == 0) {
-            System.out.println("Game over! You are out of lives!");
-            this.gameOver = true;
-            return false;
-        }
 
         boolean guessHigher = guess.equalsIgnoreCase("H");
         boolean correctGuess = checkGuess(nextCard, guessHigher);
@@ -38,22 +69,11 @@ public class GameEngine {
         handleGuess(correctGuess, nextCard);
         this.currentCard = nextCard;
 
-        return correctGuess;
-    }
-
-    private boolean checkGuess(Card nextCard, boolean guessHigher) {
-        int currentValue = currentCard.rank().getValue();
-        int nextValue = nextCard.rank().getValue();
-
-        if (currentValue != -1 || nextValue != -1) {
-            if (guessHigher) {
-                return nextValue >= currentValue;
-            } else {
-                return nextValue <= currentValue;
-            }
+        if (nextCard == null || lives == 0) {
+            this.gameOver = true;
         }
 
-        return true;
+        return correctGuess;
     }
 
     private void handleGuess(boolean correctGuess, Card nextCard) {
@@ -82,5 +102,32 @@ public class GameEngine {
 
     public int getLives() {
         return lives;
+    }
+
+    private boolean checkGuess(Card nextCard, boolean guessHigher) {
+        int currentValue = currentCard.rank().getValue();
+        int nextValue = nextCard.rank().getValue();
+
+        if (currentValue == -1 || nextValue == -1) {
+            return true;
+        }
+
+        if (guessHigher) {
+            return nextValue >= currentValue;
+        }
+
+        return nextValue <= currentValue;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public Card getCurrentCard() {
+        return currentCard;
+    }
+
+    public int cardsRemaining() {
+        return deck.cardsRemaining();
     }
 }
