@@ -1,11 +1,11 @@
 package HigherOrLower;
 
 public enum Suit {
-    HEARTS("♥"),
-    DIAMONDS("♦"),
-    CLUBS("♣"),
-    SPADES("♠"),
-    NONE("★");
+    HEARTS("H"),
+    DIAMONDS("D"),
+    CLUBS("C"),
+    SPADES("S"),
+    NONE("*");
 
     private final String symbol;
 
