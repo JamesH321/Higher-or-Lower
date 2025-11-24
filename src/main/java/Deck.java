@@ -10,7 +10,9 @@ public class Deck {
 
         for (Rank rank : Rank.values()) {
             for (Suit suit : Suit.values()) {
-                cards.add(new Card(rank, suit));
+                if (rank != Rank.JOKER && suit != Suit.NONE) {
+                    cards.add(new Card(rank, suit));
+                }
             }
         }
 
@@ -28,5 +30,9 @@ public class Deck {
         }
 
         return this.cards.removeFirst();
+    }
+
+    public int cardsRemaining() {
+        return cards.size();
     }
 }
