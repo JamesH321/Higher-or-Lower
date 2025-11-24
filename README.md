@@ -6,7 +6,7 @@ mechanics, and Joker wildcards.
 
 ## How to run
 
-Prerequisites: Java 21+
+Prerequisites: Java 21+ and Apache Maven
 
 1. Clone the repository.
 2. Build the project: `mvn clean package`
@@ -30,6 +30,15 @@ Prerequisites: Java 21+
   constants or strings.
 * **Rich Console UX:** The application uses ANSI escape codes to render colour-coded text and ASCII art for cards,
   improving the visual experience of the terminal interface.
+
+## Testing
+
+To ensure reliability, I implemented a robust testing suite using **JUnit 5**:
+
+* **Deck Logic:** Verified that the deck initialises with exactly 54 cards and handles empty-deck scenarios gracefully.
+* **Deterministic Engine Testing:** Used **Java Reflection** in my test suite (`GameEngineTest.java`) to inject specific
+  cards into the private engine state. This allowed me to verify edge cases like Joker mechanics and tiebreaking without
+  relying on random chance.
 
 ## Future Improvements
 
