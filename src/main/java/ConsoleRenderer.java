@@ -4,18 +4,6 @@ public class ConsoleRenderer {
     private static final String ANSI_CYAN = "\u001B[36m";
     private static final String ANSI_YELLOW = "\u001B[33m"; // For jokers
     private static final String ANSI_ORANGE = "\u001B[38;5;208m"; // For UI
-    // For card borders
-
-    public static void main(String[] args) {
-        ConsoleRenderer consoleRenderer = new ConsoleRenderer();
-        consoleRenderer.displayWelcome();
-        consoleRenderer.displayGameState(new Card(Rank.EIGHT, Suit.HEARTS), 10, 5, 1);
-        consoleRenderer.displayGameState(new Card(Rank.TEN, Suit.DIAMONDS), 10, 5, 1);
-        consoleRenderer.displayGameState(new Card(Rank.KING, Suit.CLUBS), 10, 5, 1);
-        consoleRenderer.displayGameState(new Card(Rank.QUEEN, Suit.SPADES), 10, 5, 1);
-        consoleRenderer.displayGameState(new Card(Rank.JOKER, Suit.NONE), 10, 5, 1);
-        consoleRenderer.displayGameOver(100);
-    }
 
     public void displayWelcome() {
         System.out.println(ANSI_ORANGE + "======================================");
@@ -23,12 +11,13 @@ public class ConsoleRenderer {
         System.out.println("======================================" + ANSI_RESET);
     }
 
-    public void displayGameState(Card card, int score, int streak, int lives) {
-        System.out.println("\n---------------------------------------");
+    public void displayGameState(Card card, int score, int streak, int lives, int cardsInDeck) {
+        System.out.println("\n-------------------------------------------------------------");
         System.out.println(" SCORE: " + ANSI_ORANGE + score + ANSI_RESET +
                 "  |  STREAK: " + ANSI_ORANGE + "x" + streak + ANSI_RESET +
-                "  |  LIVES: " + ANSI_ORANGE + lives + ANSI_RESET);
-        System.out.println("---------------------------------------\n");
+                "  |  LIVES: " + ANSI_ORANGE + lives + ANSI_RESET +
+                "  |  CARDS IN DECK: " + ANSI_ORANGE + cardsInDeck + ANSI_RESET);
+        System.out.println("-------------------------------------------------------------\n");
 
         System.out.println("Current Card:");
         printAsciiCard(card);
