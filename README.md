@@ -1,6 +1,7 @@
 # Higher or Lower Card Game
 
-A command-line implementation of the classic higher or lower card game, featuring a streak-based scoring system, life
+A command-line implementation of the classic higher or lower card game in Java, featuring a streak-based scoring system,
+life
 mechanics, and Joker wildcards.
 
 ## How to run
