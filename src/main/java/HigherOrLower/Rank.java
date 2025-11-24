@@ -1,3 +1,5 @@
+package HigherOrLower;
+
 public enum Rank {
     ACE(1),
     TWO(2),

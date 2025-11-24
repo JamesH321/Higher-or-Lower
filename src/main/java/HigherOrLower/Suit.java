@@ -1,3 +1,5 @@
+package HigherOrLower;
+
 public enum Suit {
     HEARTS("♥"),
     DIAMONDS("♦"),

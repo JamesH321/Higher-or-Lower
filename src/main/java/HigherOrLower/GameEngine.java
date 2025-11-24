@@ -1,3 +1,5 @@
+package HigherOrLower;
+
 import java.util.Scanner;
 
 public class GameEngine {
