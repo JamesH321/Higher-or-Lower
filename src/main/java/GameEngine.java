@@ -69,7 +69,7 @@ public class GameEngine {
         handleGuess(correctGuess, nextCard);
         this.currentCard = nextCard;
 
-        if (nextCard == null || lives == 0) {
+        if (deck.cardsRemaining() == 0 || lives == 0) {
             this.gameOver = true;
         }
 
